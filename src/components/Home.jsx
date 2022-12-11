@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab } from '@headlessui/react';
 const Home = () => {
+	const [selectedIndex, setSelectedIndex] = useState(0);
 	return (
 		<div className='w-full h-screen'>
-			<Tab.Group>
+			<Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
 				<Tab.List>
 					<Tab>National</Tab>
 					<Tab>International</Tab>
