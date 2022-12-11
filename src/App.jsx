@@ -1,6 +1,7 @@
 import Home from './components/Home';
 import Login from './components/Login';
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 export const tabs = [
 	{
 		name: 'National',
@@ -35,6 +36,7 @@ function App() {
 					element={<Home selected={name} />}
 				/>
 			))}
+			<Route path='/dashboard' element={<Dashboard />} />
 		</Routes>
 	);
 }
