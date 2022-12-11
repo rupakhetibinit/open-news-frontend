@@ -28,7 +28,7 @@ const Home = ({ selected }) => {
 								onClick={() => navigate(`/${slug}`)}
 								key={name}
 								className={cx(
-									'pr-5 hover:text-gray-900 cursor-pointer text-md transition-colors',
+									'pr-5 hover:text-gray-900 cursor-pointer text-md transition-colors ease-in-out',
 									{
 										'text-gray-900 underline underline-offset-4 font-medium':
 											selected == name,
