@@ -15,6 +15,7 @@ const Home = ({ selected }) => {
 		onSuccess: (value) => console.log(value),
 	});
 	const index = selected == 'Other News' ? 1 : 0;
+	if (isLoading) return null;
 	return (
 		<Suspense fallback={<p>loading...</p>}>
 			<div className='w-full h-screen'>
@@ -81,7 +82,7 @@ const Home = ({ selected }) => {
 									<img
 										alt='gallery'
 										className='w-full object-cover h-full object-center block'
-										src='https://dummyimage.com/500x300'
+										src={'http://localhost:8000/' + data[index].image}
 									/>
 								</div>
 								<div className='md:p-2 p-1 w-1/2'>
