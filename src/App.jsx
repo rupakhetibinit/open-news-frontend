@@ -3,6 +3,7 @@ import Login from './components/Login';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import AddNews from './components/AddNews';
+import SingleNews from './components/SingleNews';
 export const tabs = [
 	{
 		name: 'National',
@@ -39,6 +40,7 @@ function App() {
 			))}
 			<Route path='/dashboard' element={<Dashboard />} />
 			<Route path='/add-news' element={<AddNews />} />
+			<Route path='/articles/:id' element={<SingleNews />} />
 		</Routes>
 	);
 }

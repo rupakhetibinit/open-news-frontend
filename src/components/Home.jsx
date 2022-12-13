@@ -94,9 +94,12 @@ const Home = ({ selected }) => {
 
 export default Home;
 
-const ArticleCard = ({ image, introduction, headline, byline }) => {
+const ArticleCard = ({ image, introduction, headline, byline, id }) => {
+	const navigate = useNavigate();
 	return (
-		<div className='px-4 py-8 max-w-xl hover:cursor-pointer'>
+		<div
+			onClick={() => navigate(`/articles/${id}`)}
+			className='px-4 py-8 max-w-xl hover:cursor-pointer'>
 			<div className='bg-white shadow-2xl rounded-lg mb-6 tracking-wide'>
 				<div className='md:flex-shrink-0'>
 					<img
