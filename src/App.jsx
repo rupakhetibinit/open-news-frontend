@@ -4,50 +4,46 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import AddNews from './components/AddNews';
 
+import AddNews from './components/AddNews';
+import SingleNews from './components/SingleNews';
 export const tabs = [
 	{
 		name: 'National',
-		slug: 'national',
+		slug: 'NATIONAL',
 	},
 	{
 		name: 'Sports',
-		slug: 'sports',
+		slug: 'SPORTS',
 	},
 	{
 		name: 'Fashion',
-		slug: 'fashion',
+		slug: 'FASHION',
 	},
 	{
 		name: 'Finance',
-		slug: 'finance',
+		slug: 'FINANCE',
 	},
 	{
 		name: 'Politics',
-		slug: 'politics',
+		slug: 'POLITICS',
 	},
-	{ 
-		name: 'Other News', 
-		slug: 'other-news' 
-	},
+	{ name: 'Other News', slug: 'OTHERS' },
 ];
 function App() {
 	return (
-		<>
-			<Routes>
-				<Route path='/' element={<Home selected='National' />} />;
-				{tabs.map(({ name, slug }) => (
-					<Route
-						key={name}
-						path={`/${slug}`}
-						element={<Home selected={name} />}
-					/>
-				))}
-				
-				<Route path='/add-news' element={<AddNews />} />;
-				<Route path='/login' element={<Login />} />;
-				<Route path='/dashboard' element={<Dashboard />} />
-			</Routes>
-		</>
+		<Routes>
+			<Route path='/' element={<Home selected='National' />} />;
+			{tabs.map(({ name, slug }) => (
+				<Route
+					key={name}
+					path={`/${slug}`}
+					element={<Home selected={slug} />}
+				/>
+			))}
+			<Route path='/dashboard' element={<Dashboard />} />
+			<Route path='/add-news' element={<AddNews />} />
+			<Route path='/articles/:id' element={<SingleNews />} />
+		</Routes>
 	);
 }
 
