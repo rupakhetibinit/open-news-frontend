@@ -6,3 +6,7 @@ A news portal app made for Leapfrog Revampathon 2022 by Team Enigma
 - First do `npm install` in the directory
 - Run `npm run dev` in the terminal
 - Have fun 💀
+
+# Backend
+
+[Django Backend](https://github.com/Anuj-Gupta4/open-news-api-backend)
