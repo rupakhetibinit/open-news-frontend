@@ -6,35 +6,35 @@ import AddNews from './components/AddNews';
 export const tabs = [
 	{
 		name: 'National',
-		slug: 'national',
+		slug: 'NATIONAL',
 	},
 	{
 		name: 'Sports',
-		slug: 'sports',
+		slug: 'SPORTS',
 	},
 	{
 		name: 'Fashion',
-		slug: 'fashion',
+		slug: 'FASHION',
 	},
 	{
 		name: 'Finance',
-		slug: 'finance',
+		slug: 'FINANCE',
 	},
 	{
 		name: 'Politics',
-		slug: 'politics',
+		slug: 'POLITICS',
 	},
-	{ name: 'Other News', slug: 'other-news' },
+	{ name: 'Other News', slug: 'OTHERS' },
 ];
 function App() {
 	return (
 		<Routes>
-			<Route path='/' element={<Home selected='National' />} />;
+			<Route path='/' element={<Home selected='NATIONAL' />} />;
 			{tabs.map(({ name, slug }) => (
 				<Route
 					key={name}
 					path={`/${slug}`}
-					element={<Home selected={name} />}
+					element={<Home selected={slug} />}
 				/>
 			))}
 			<Route path='/dashboard' element={<Dashboard />} />

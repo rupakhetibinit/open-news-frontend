@@ -8,14 +8,17 @@ const Home = ({ selected }) => {
 	const navigate = useNavigate();
 	const [subArticles, setSubArticles] = useState([]);
 	const { data, error, isLoading } = useQuery({
-		queryKey: ['news'],
+		queryKey: [`news-${selected}`],
 		queryFn: async () => {
-			const resp = await axios.get('http://localhost:8000/api/article-list');
+			const resp = await axios.get(
+				`http://localhost:8000/api/article-list/${selected.toLowerCase()}`
+			);
 			return resp.data;
 		},
 		onSuccess: (value) => {
 			console.log(value);
 			const sub = value.slice(2);
+			console.log(sub);
 			setSubArticles([...sub]);
 		},
 	});
@@ -43,13 +46,13 @@ const Home = ({ selected }) => {
 						<nav className='md:ml-auto flex flex-wrap items-center text-base justify-center '>
 							{tabs.map(({ name, slug }) => (
 								<a
-									onClick={() => navigate(`/${slug}`)}
+									onClick={() => navigate(`/${slug.toLowerCase()}`)}
 									key={name}
 									className={cx(
 										'pr-5 hover:text-gray-900 cursor-pointer text-md transition-colors ease-in-out',
 										{
 											'text-gray-900 underline underline-offset-4 font-medium':
-												selected == name,
+												selected == slug,
 										}
 									)}>
 									{name}
@@ -78,8 +81,8 @@ const Home = ({ selected }) => {
 				<section className='text-gray-600 body-font'>
 					<div className='container px-5 py-4 mx-auto'>
 						<div className='flex flex-wrap -m-4'>
-							{subArticles.map((i) => (
-								<SubArticlesCard {...subArticles[i]} />
+							{subArticles.map((_, i) => (
+								<SubArticlesCard key={i} {...subArticles[i]} />
 							))}
 						</div>
 					</div>
