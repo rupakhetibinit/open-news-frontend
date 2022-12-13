@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const AddNews = () => {
+	const navigate = useNavigate();
 	const url = 'http://localhost:8000/api/article-create';
 	const [data, setData] = useState({
 		newsHeading: '',
@@ -28,13 +30,18 @@ const AddNews = () => {
 		bodyFormData.append('body', data.newsBody);
 		bodyFormData.append('introduction', data.newsIntro);
 		bodyFormData.append('conclusion', data.conclusion);
+		bodyFormData.append('byline', data.byline);
+
 		axios
 			.post(url, bodyFormData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 				},
 			})
-			.then((res) => console.log(res.data));
+			.then((res) => {
+				console.log(res.data);
+				navigate(`/articles/${res.data.id}`);
+			});
 
 		// setData();
 	}

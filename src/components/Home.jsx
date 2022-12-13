@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
 import { useQuery } from '@tanstack/react-query';
+import Navbar from './Navbar';
 const Home = ({ selected }) => {
 	const navigate = useNavigate();
 	const [subArticles, setSubArticles] = useState([]);
@@ -59,8 +60,10 @@ const Home = ({ selected }) => {
 								</a>
 							))}
 						</nav>
-						<button className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'>
-							Sign in
+						<button
+							onClick={() => navigate('/add-news')}
+							className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'>
+							Add News
 							<svg
 								fill='none'
 								stroke='currentColor'
@@ -79,7 +82,7 @@ const Home = ({ selected }) => {
 					<ArticleCard {...data[1]} />
 				</section>
 				<section className='text-gray-600 body-font'>
-					<div className='container px-5 py-4 mx-auto'>
+					<div className='container px-8 py-4 mx-auto'>
 						<div className='flex flex-wrap -m-4'>
 							{subArticles.map((_, i) => (
 								<SubArticlesCard key={i} {...subArticles[i]} />
@@ -136,9 +139,12 @@ const ArticleCard = ({ image, introduction, headline, byline, id }) => {
 	);
 };
 
-const SubArticlesCard = ({ headline, byline, introduction, image }) => {
+const SubArticlesCard = ({ headline, byline, introduction, image, id }) => {
+	const navigate = useNavigate();
 	return (
-		<div className='lg:w-1/3 sm:w-1/2 p-4'>
+		<div
+			onClick={() => navigate(`/articles/${id}`)}
+			className='lg:w-1/3 sm:w-1/2 p-4 hover:cursor-pointer '>
 			<div className='flex relative'>
 				<img
 					alt='gallery'

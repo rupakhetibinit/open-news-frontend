@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import AddNews from './components/AddNews';
 
-import AddNews from './components/AddNews';
 import SingleNews from './components/SingleNews';
 export const tabs = [
 	{

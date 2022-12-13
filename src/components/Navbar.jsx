@@ -3,7 +3,7 @@ import { tabs } from '../App';
 import cx from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({selected}) => {
+const Navbar = ({ selected }) => {
 	const navigate = useNavigate();
 	return (
 		<header className='text-gray-600 body-font z-30 sticky top-0 bg-white m-0'>
@@ -38,8 +38,10 @@ const Navbar = ({selected}) => {
 						</a>
 					))}
 				</nav>
-				<button className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'>
-					Sign in
+				<button
+					onClick={() => navigate('/national')}
+					className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'>
+					Go Back
 					<svg
 						fill='none'
 						stroke='currentColor'
@@ -53,7 +55,7 @@ const Navbar = ({selected}) => {
 				</button>
 			</div>
 		</header>
-	)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;
