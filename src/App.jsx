@@ -29,7 +29,7 @@ export const tabs = [
 function App() {
 	return (
 		<Routes>
-			<Route path='/' element={<Home selected='NATIONAL' />} />;
+			<Route path='/' element={<Home selected='National' />} />;
 			{tabs.map(({ name, slug }) => (
 				<Route
 					key={name}
