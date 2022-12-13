@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { tabs } from '../App';
+// import { tabs } from '../App';
 import { useNavigate } from 'react-router-dom';
-import cx from 'classnames';
+// import cx from 'classnames';
+import Navbar from './Navbar';
+
 const Home = ({ selected }) => {
 	const navigate = useNavigate();
 	return (
 		<div className='w-full h-screen'>
-			<header className='text-gray-600 body-font z-30 sticky top-0 bg-white m-0'>
+			{/* <header className='text-gray-600 body-font z-30 sticky top-0 bg-white m-0'>
 				<div className='container mx-auto flex flex-wrap px-4 pt-4 pb-2 flex-col md:flex-row items-center'>
 					<a className='flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0'>
 						<svg
@@ -52,7 +54,8 @@ const Home = ({ selected }) => {
 						</svg>
 					</button>
 				</div>
-			</header>
+			</header> */}
+			<Navbar selected={selected} />
 			<section className='text-gray-600 body-font'>
 				<div className='container px-5 py-4 mx-auto flex flex-wrap'>
 					<div className='flex w-full mb-5 flex-wrap'>
