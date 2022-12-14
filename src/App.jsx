@@ -1,9 +1,9 @@
 import Home from './components/Home';
 import Login from './components/Login';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import AddNews from './components/AddNews';
-
+import SearchPage from './components/SearchPage';
 import SingleNews from './components/SingleNews';
 export const tabs = [
 	{
@@ -31,7 +31,7 @@ export const tabs = [
 function App() {
 	return (
 		<Routes>
-			<Route path='/' element={<Home selected='National' />} />;
+			<Route path='/' exact element={<Navigate to='/national' />} />
 			{tabs.map(({ name, slug }) => (
 				<Route
 					key={name}
@@ -42,6 +42,7 @@ function App() {
 			<Route path='/dashboard' element={<Dashboard />} />
 			<Route path='/add-news' element={<AddNews />} />
 			<Route path='/articles/:id' element={<SingleNews />} />
+			<Route path='/search/:query' element={<SearchPage />} />
 		</Routes>
 	);
 }
