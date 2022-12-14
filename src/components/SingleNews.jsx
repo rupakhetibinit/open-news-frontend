@@ -22,7 +22,9 @@ const SingleNews = () => {
 			<div className='flex flex-col'>
 				<Navbar />
 				<div className='flex flex-col items-center'>
-					<h1 className='text-4xl font-semibold mt-2 mb-6'>{data.headline}</h1>
+					<h1 className='text-4xl font-semibold mt-2 mb-6 px-48'>
+						{data.headline}
+					</h1>
 					<img
 						className='max-w-3xl w-contain mb-2'
 						src={'http://localhost:8000' + data.image}
