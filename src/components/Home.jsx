@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 const Home = ({ selected }) => {
 	const navigate = useNavigate();
 	const [subArticles, setSubArticles] = useState([]);
+	const [mainArticles, setMainArticles] = useState([]);
 	const { data, error, isLoading } = useQuery({
 		queryKey: [`news-${selected}`],
 		queryFn: async () => {
@@ -17,13 +18,14 @@ const Home = ({ selected }) => {
 			return resp.data;
 		},
 		onSuccess: (value) => {
-			console.log(value);
+			// console.log(value);
 			const sub = value.slice(2);
-			console.log(sub);
+			const main = value.slice(1, 2);
+			// console.log(sub);
 			setSubArticles([...sub]);
+			setMainArticles([...main]);
 		},
 	});
-	const index = selected == 'Other News' ? 1 : 0;
 	if (isLoading) return null;
 	return (
 		<Suspense fallback={<p>loading...</p>}>
@@ -78,8 +80,9 @@ const Home = ({ selected }) => {
 					</div>
 				</header>
 				<section className='text-gray-600 flex flex-row body-font justify-center'>
-					<ArticleCard {...data[0]} />
-					<ArticleCard {...data[1]} />
+					{mainArticles.map((item) => (
+						<ArticleCard key={JSON.stringify(item)} {...item} />
+					))}
 				</section>
 				<section className='text-gray-600 body-font'>
 					<div className='container px-8 py-4 mx-auto'>
@@ -111,16 +114,11 @@ const ArticleCard = ({ image, introduction, headline, byline, id }) => {
 						className='w-[40vw] h-96 rounded-lg rounded-b-none object-cover'
 					/>
 				</div>
-				<div className='px-4 py-2 mt-2'>
+				<div className='text-left px-4 py-2 mt-2'>
 					<h2 className='font-bold text-2xl text-gray-800 tracking-normal'>
 						{headline}
 					</h2>
 					<p className='text-sm text-gray-700 px-2 mr-1'>{introduction}</p>
-					<div className='flex items-center justify-between mt-2 mx-6'>
-						<a href='#' className='text-blue-500 text-xs -ml-3 '>
-							Show More
-						</a>
-					</div>
 					<div className='author flex items-center -ml-3 my-3'>
 						<div className='user-logo'>
 							<img

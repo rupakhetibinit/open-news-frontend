@@ -13,8 +13,8 @@ const SingleNews = () => {
 			);
 			return resp.data;
 		},
-		onSuccess: (v) => console.log(v),
-		onSettled: (data) => console.log(data),
+		// onSuccess: (v) => console.log(v),
+		// onSettled: (data) => console.log(data),
 	});
 	if (isLoading) return null;
 	return (
