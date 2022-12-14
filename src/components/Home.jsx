@@ -118,9 +118,12 @@ const Home = ({ selected }) => {
 				</header>
 
 				<section
-					className={cx('container grid grid-cols-2 gap-16 px-24 pt-8', {
-						'place-items-center grid-cols-1': data.length == 1,
-					})}>
+					className={cx(
+						'container grid grid-cols-2 auto-rows-fr gap-16 px-24 pt-8',
+						{
+							'place-items-center grid-cols-1': data.length == 1,
+						}
+					)}>
 					{data.map((item) => (
 						<ArticleCard key={JSON.stringify(item)} {...item} />
 					))}
@@ -146,20 +149,20 @@ export const ArticleCard = ({ image, introduction, headline, byline, id }) => {
 	return (
 		<div
 			onClick={() => navigate(`/articles/${id}`)}
-			className='col-span-1 bg-white hover:cursor-pointer hover:scale-105 transition-transform'>
+			className='col-span-1 w-[650px] bg-white hover:cursor-pointer hover:scale-105 transition-transform'>
 			<div className=' bg-white shadow-2xl rounded-lg mb-6 tracking-wide'>
 				<div>
 					<img
 						src={image}
 						alt='mountains'
-						className=' rounded-lg rounded-b-none object-cover w-[100%] '
+						className=' rounded-lg rounded-b-none object-cover h-[350px] w-[100%] '
 					/>
 				</div>
 				<div className='text-left px-4 py-2 mt-2'>
-					<h2 className='font-semibold text-2xl text-gray-800 tracking-normal'>
+					<h2 className='font-semibold text-2xl text-gray-800 tracking-normal px-2'>
 						{headline}
 					</h2>
-					<p className='text-sm text-gray-700 px-2 mr-1'>{introduction}</p>
+					<p className='text-sm text-gray-700 px-2 '>{introduction}</p>
 					<div className='author flex items-center -ml-3 my-3'>
 						<div className='user-logo'>
 							<img

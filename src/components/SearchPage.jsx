@@ -21,7 +21,7 @@ const SearchPage = () => {
 			<div className='w-full h-screen'>
 				<Navbar />
 
-				<section className='container grid grid-cols-2 gap-16 px-24 pt-8 '>
+				<section className='container grid grid-cols-2 auto-rows-fr gap-16 px-24 pt-8'>
 					{data.map((item) => (
 						<ArticleCard key={JSON.stringify(item)} {...item} />
 					))}
