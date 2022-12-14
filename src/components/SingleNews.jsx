@@ -19,22 +19,28 @@ const SingleNews = () => {
 	if (isLoading) return null;
 	return (
 		<Suspense fallback={<p>loading...</p>}>
-			<div className='flex flex-col overflow-y-scroll p-4'>
+			<div className='flex flex-col'>
 				<Navbar />
 				<div className='flex flex-col items-center'>
-					<h1 className='text-2xl my-2'>{data.headline}</h1>
+					<h1 className='text-4xl font-semibold mt-2 mb-6'>{data.headline}</h1>
 					<img
-						className=' h-[60vh] w-fit mb-2'
+						className='max-w-3xl w-contain mb-2'
 						src={'http://localhost:8000' + data.image}
 						alt={data.headline}
 					/>
-					<p className='mb-2'>{data.introduction}</p>
-					<p className='mb-2'>{data.body}</p>
-					<p className='mb-2'>{data.conclusion}</p>
-					<span className='flex mb-2 items-center'>
-						<p>by &nbsp;</p>
-						<h3 className='text-xl'>{data.byline}</h3>
-					</span>
+					<div className='flex w-1/2 flex-col items-baseline'>
+						<p className='mb-4 leading-6 text-md text-gray-800'>
+							{data.introduction}
+						</p>
+						<p className='mb-4 leading-6 text-md text-gray-800'>{data.body}</p>
+						<p className='mb-4 leading-6 text-md text-gray-800'>
+							{data.conclusion}
+						</p>
+						<span className='flex mb-2 items-baseline'>
+							<p className='text-md'>by &nbsp;</p>
+							<h3 className='text-xl font-medium'>{data.byline}</h3>
+						</span>
+					</div>
 				</div>
 			</div>
 		</Suspense>
