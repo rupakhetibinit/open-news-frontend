@@ -2,7 +2,30 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-
+import Select from 'react-select';
+const options = [
+	{
+		label: 'National',
+		value: 'NATIONAL',
+	},
+	{
+		label: 'Sports',
+		value: 'SPORTS',
+	},
+	{
+		label: 'Fashion',
+		value: 'FASHION',
+	},
+	{
+		label: 'Finance',
+		value: 'FINANCE',
+	},
+	{
+		label: 'Politics',
+		value: 'POLITICS',
+	},
+	{ label: 'Other News', value: 'OTHERS' },
+];
 const AddNews = () => {
 	const navigate = useNavigate();
 	const url = 'http://localhost:8000/api/article-create';
@@ -14,23 +37,25 @@ const AddNews = () => {
 		conclusion: '',
 		byline: '',
 	});
+	const [tag, setTag] = useState('OTHERS');
 	const [image, setImage] = useState({});
 	function handle(e) {
 		const newsdata = { ...data };
 		newsdata[e.target.id] = e.target.value;
 		setData(newsdata);
-		console.log(newsdata);
+		// console.log(newsdata);
 	}
 	function handleSubmit(e) {
 		e.preventDefault();
 		const bodyFormData = new FormData();
-		console.log(image);
+		// console.log(image);
 		bodyFormData.append('headline', data.newsHeading);
 		bodyFormData.append('image', image);
 		bodyFormData.append('body', data.newsBody);
 		bodyFormData.append('introduction', data.newsIntro);
 		bodyFormData.append('conclusion', data.conclusion);
 		bodyFormData.append('byline', data.byline);
+		bodyFormData.append('tags', tag);
 
 		axios
 			.post(url, bodyFormData, {
@@ -39,7 +64,7 @@ const AddNews = () => {
 				},
 			})
 			.then((res) => {
-				console.log(res.data);
+				// console.log(res.data);
 				navigate(`/articles/${res.data.id}`);
 			});
 
@@ -169,6 +194,17 @@ const AddNews = () => {
 									required
 									className='focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300'></input>
 							</div>
+							<label htmlFor='tag' className='text-gray-600 dark:text-gray-300'>
+								Select Tag
+							</label>
+							<Select
+								onChange={(e) => {
+									setTag(e.value);
+								}}
+								closeMenuOnSelect
+								name='tags'
+								options={options}
+							/>
 
 							<button
 								type='submit'

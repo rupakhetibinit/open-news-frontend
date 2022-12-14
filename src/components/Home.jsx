@@ -76,7 +76,7 @@ const Home = ({ selected }) => {
 									x='0px'
 									y='0px'
 									viewBox='0 0 56.966 56.966'
-									xml:space='preserve'
+									xmlSpace='preserve'
 									width='512px'
 									height='512px'>
 									<path d='M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z' />
@@ -117,12 +117,15 @@ const Home = ({ selected }) => {
 					</div>
 				</header>
 
-				<section className='text-gray-600 flex flex-row body-font justify-center'>
-					{mainArticles.map((item) => (
+				<section
+					className={cx('container grid grid-cols-2 gap-16 px-24 pt-8', {
+						'place-items-center grid-cols-1': data.length == 1,
+					})}>
+					{data.map((item) => (
 						<ArticleCard key={JSON.stringify(item)} {...item} />
 					))}
 				</section>
-				<section className='text-gray-600 body-font'>
+				{/* <section className='text-gray-600 body-font'>
 					<div className='container px-8 py-4 mx-auto'>
 						<div className='flex flex-wrap -m-4'>
 							{subArticles.map((_, i) => (
@@ -130,7 +133,7 @@ const Home = ({ selected }) => {
 							))}
 						</div>
 					</div>
-				</section>
+				</section> */}
 			</div>
 		</Suspense>
 	);
@@ -143,17 +146,17 @@ export const ArticleCard = ({ image, introduction, headline, byline, id }) => {
 	return (
 		<div
 			onClick={() => navigate(`/articles/${id}`)}
-			className='px-4 py-8 max-w-xl hover:cursor-pointer hover:scale-105 transition-transform'>
-			<div className='bg-white shadow-2xl rounded-lg mb-6 tracking-wide'>
-				<div className='md:flex-shrink-0'>
+			className='col-span-1 bg-white hover:cursor-pointer hover:scale-105 transition-transform'>
+			<div className=' bg-white shadow-2xl rounded-lg mb-6 tracking-wide'>
+				<div>
 					<img
 						src={image}
 						alt='mountains'
-						className='w-[40vw] h-96 rounded-lg rounded-b-none object-cover'
+						className=' rounded-lg rounded-b-none object-cover w-[100%] '
 					/>
 				</div>
 				<div className='text-left px-4 py-2 mt-2'>
-					<h2 className='font-bold text-2xl text-gray-800 tracking-normal'>
+					<h2 className='font-semibold text-2xl text-gray-800 tracking-normal'>
 						{headline}
 					</h2>
 					<p className='text-sm text-gray-700 px-2 mr-1'>{introduction}</p>
